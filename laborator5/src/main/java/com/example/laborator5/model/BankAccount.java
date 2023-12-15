@@ -1,6 +1,12 @@
 package com.example.laborator5.model;
 
+import jakarta.persistence.*;
+
+@Entity
 public class BankAccount {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String accountNumber;
@@ -8,6 +14,9 @@ public class BankAccount {
     private String accountType;
     private long balance;
     private String currency;
+
+    public BankAccount() {
+    }
 
     public BankAccount(int id, String accountNumber, String accountName, String accountType, long balance, String currency) {
         this.id = id;
