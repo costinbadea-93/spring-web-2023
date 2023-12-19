@@ -12,14 +12,17 @@ import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
-@WebMvcTest(controllers = ShopServiceController.class)
+@WebMvcTest(ShopServiceController.class)
 public class ShopControllerIT {
 
     @Autowired
@@ -45,17 +48,20 @@ public class ShopControllerIT {
     @Test
     public void createAlbumDetails() throws Exception {
         //arrange
-        AlbumDetails albumDetails = new AlbumDetails("Some album details");
-        when(shopService.saveAlbumDetails(albumDetails)).thenReturn(albumDetails);
+        AlbumDetails albumDetails = new AlbumDetails(1,"some description");
+        //if we dont want to use any we have to override equals and hash code in AlbumDetails
+        //because we serialize/deserialize a copy of the object from test and not
+        //the initial one
+        when(shopService.saveAlbumDetails(any(AlbumDetails.class))).thenReturn(albumDetails);
 
         //act
         //assert
         mockMvc.perform(
                 post("/shops/albumDetails/new")
-                        .contentType("application/json")
+                        .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(albumDetails))
-        ).andExpect(MockMvcResultMatchers.status().is2xxSuccessful());
-//                .andExpect(jsonPath("$.description").value(albumDetails.getDescription()));
+        ).andExpect(MockMvcResultMatchers.status().is2xxSuccessful())
+                .andExpect(jsonPath("$.description").value(albumDetails.getDescription()));
     }
 
 }

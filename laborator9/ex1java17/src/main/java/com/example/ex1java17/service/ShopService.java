@@ -8,9 +8,9 @@ import com.example.ex1java17.repository.AlbumDetailRepository;
 import com.example.ex1java17.repository.AlbumRepository;
 import com.example.ex1java17.repository.ArtistRepository;
 import com.example.ex1java17.repository.ShopRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service

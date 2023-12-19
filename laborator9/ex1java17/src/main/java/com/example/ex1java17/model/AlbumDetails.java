@@ -1,9 +1,9 @@
 package com.example.ex1java17.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class AlbumDetails {
@@ -17,6 +17,11 @@ public class AlbumDetails {
     }
 
     public AlbumDetails(String description) {
+        this.description = description;
+    }
+
+    public AlbumDetails(int albumDetailsId, String description) {
+        this.albumDetailsId = albumDetailsId;
         this.description = description;
     }
 

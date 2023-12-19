@@ -5,6 +5,7 @@ import com.example.ex1java17.model.AlbumDetails;
 import com.example.ex1java17.model.Artist;
 import com.example.ex1java17.model.Shop;
 import com.example.ex1java17.service.ShopService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +27,8 @@ public class ShopServiceController {
 
     @PostMapping("/albumDetails/new")
     public ResponseEntity<AlbumDetails> saveAlbumDetails(@RequestBody AlbumDetails albumDetails){
-        return ResponseEntity.ok().body(shopService.saveAlbumDetails(albumDetails));
+        AlbumDetails savedAlbumDetails = shopService.saveAlbumDetails(albumDetails);
+        return ResponseEntity.ok().body(savedAlbumDetails);
     }
 
     @PostMapping("/album/new")

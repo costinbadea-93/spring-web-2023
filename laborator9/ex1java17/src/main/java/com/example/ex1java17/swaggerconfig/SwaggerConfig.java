@@ -13,8 +13,7 @@ import static springfox.documentation.builders.PathSelectors.any;
 
 @Configuration
 @EnableSwagger2
-public class SwaggerConfig  extends WebMvcConfigurationSupport {
-
+public class SwaggerConfig extends WebMvcConfigurationSupport {
     @Bean
     public Docket productApi() {
         return new Docket(DocumentationType.SWAGGER_2)

@@ -1,8 +1,8 @@
 package com.example.ex1java17.model;
 
 
-import jakarta.persistence.*;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 

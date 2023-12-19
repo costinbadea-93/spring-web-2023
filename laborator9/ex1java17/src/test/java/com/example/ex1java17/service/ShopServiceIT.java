@@ -14,6 +14,7 @@ public class ShopServiceIT {
     @Autowired
     private ShopService shopService;
 
+
     @Test
     @DisplayName("Create album details it")
     public void createAlbumDetails(){
